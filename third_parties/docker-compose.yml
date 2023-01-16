@@ -1,0 +1,21 @@
+#docker run --rm storytel/gcp-pubsub-emulator --help
+#Fake for Google Pub/Sub
+#--help: Show this help message and exit.
+#--host: The host the server binds as (defaults to localhost).
+#--port: The port on which the server should run.
+#--iam_host: The host the IAM emulator is bound to. Defaults to localhost.
+#--iam_port: The port on which the IAM emulator is listening for requests. Defaults to 8090.
+#--projects: A comma-separated list of all valid project names. If unspecified, all projects are valid.
+
+#docker run -d -p 8262:8262 storytel/gcp-pubsub-emulator --host=0.0.0.0 --port=8262
+
+version: '3.6'
+services:
+  pubsub:    
+    command: 
+      --port=8262
+      --host=0.0.0.0
+    image: storytel/gcp-pubsub-emulator    
+    ports:
+      - 8262:8262    
+      
