@@ -1,4 +1,4 @@
-module gitlab.xmltravelgate.com/core/core-event-router
+module github.com/bloodyrafo75/core-event-router-lib
 
 go 1.19
 
