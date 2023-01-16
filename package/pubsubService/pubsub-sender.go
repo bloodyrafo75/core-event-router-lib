@@ -7,8 +7,8 @@ import (
 	"strings"
 
 	"cloud.google.com/go/pubsub"
+	"github.com/bloodyrafo75/core-event-router-lib/models"
 	"github.com/fatih/structs"
-	"gitlab.xmltravelgate.com/core/core-event-router/models"
 )
 
 type PubSubSender struct {

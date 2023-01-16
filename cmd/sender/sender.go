@@ -4,9 +4,9 @@ import (
 	"context"
 	"os"
 
+	"github.com/bloodyrafo75/core-event-router-lib/models"
+	"github.com/bloodyrafo75/core-event-router-lib/package/pubsubService"
 	"github.com/joho/godotenv"
-	"gitlab.xmltravelgate.com/core/core-event-router/models"
-	"gitlab.xmltravelgate.com/core/core-event-router/package/pubsubService"
 )
 
 var (

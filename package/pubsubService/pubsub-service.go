@@ -3,7 +3,7 @@ package pubsubService
 import (
 	"context"
 
-	"gitlab.xmltravelgate.com/core/core-event-router/models"
+	"github.com/bloodyrafo75/core-event-router-lib/models"
 )
 
 type Callback func(*models.MessageModel) error
