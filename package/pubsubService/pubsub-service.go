@@ -6,6 +6,8 @@ import (
 	"github.com/bloodyrafo75/core-event-router-lib/models"
 )
 
+var PubsubClient PubSubService
+
 type Callback func(*models.MessageModel) error
 
 type PubSubService struct {
