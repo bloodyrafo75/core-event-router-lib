@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/bloodyrafo75/core-event-router-lib/models"
 	"github.com/bloodyrafo75/core-event-router-lib/package/pubsubService"
 	"github.com/joho/godotenv"
 )
@@ -29,7 +28,7 @@ func main() {
 	pubsubService.NewPubSubService(context.Background(), PROJECT_ID, TOPIC_NAME, PRODUCER_CREDENTIALS, EVENT_ROUTER_CLIENTID)
 
 	//create example message
-	msg := createExampleMsg()
+	msg := pubsubService.PubsubClient.CreatePubsubMsg("IAM", "organizations", "READ", "ORG", "update", "", "")
 	res, err := pubsubService.PubsubClient.NotifyEvent(&msg)
 	if err != nil {
 		fmt.Println(err)
@@ -61,19 +60,4 @@ func getEnvConfiguration() error {
 	}
 
 	return nil
-}
-
-func createExampleMsg() models.MessageModel {
-	attr := models.MessageAttributes{
-		Src:   "IAM",
-		Prod:  "fake_prod",
-		Type:  "fake_type",
-		Stype: "fake_stype",
-		Op:    "fake_op",
-	}
-	return models.MessageModel{
-		Payload:         "fake_payload",
-		SpecificPayload: "fake_specific_payload",
-		Attributes:      attr,
-	}
 }

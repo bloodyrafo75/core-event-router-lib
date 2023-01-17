@@ -54,3 +54,18 @@ func (s *PubSubService) NotifyEvent(msg *models.MessageModel) (*models.Response,
 	return s.sender.Publish(*msg, s.clientID)
 
 }
+
+func (s *PubSubService) CreatePubsubMsg(src string, prod string, _type string, stype string, operation string, payload string, specific_payload string) models.MessageModel {
+	attr := models.MessageAttributes{
+		Src:   src,
+		Prod:  prod,
+		Type:  _type,
+		Stype: stype,
+		Op:    operation,
+	}
+	return models.MessageModel{
+		Payload:         payload,
+		SpecificPayload: specific_payload,
+		Attributes:      attr,
+	}
+}
