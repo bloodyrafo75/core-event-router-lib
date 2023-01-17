@@ -27,11 +27,10 @@ func main() {
 		panic(err)
 	}
 
-	ctx := context.Background()
-	pbService := pubsubService.NewPubSubService(ctx, PROJECT_ID, TOPIC_NAME, CONSUMER_CREDENTIALS, EVENT_ROUTER_CLIENTID)
+	pubsubService.NewPubSubService(context.Background(), PROJECT_ID, TOPIC_NAME, CONSUMER_CREDENTIALS, EVENT_ROUTER_CLIENTID)
 	callBackFn := callback()
+	err = pubsubService.PubsubClient.StartConsumer((*pubsubService.Callback)(&callBackFn), SUBSCRIPTION_ID)
 
-	err = pbService.StartConsumer((*pubsubService.Callback)(&callBackFn), SUBSCRIPTION_ID)
 	if err != nil {
 		fmt.Println(err)
 	}

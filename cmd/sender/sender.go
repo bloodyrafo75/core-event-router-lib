@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"os"
 
 	"github.com/bloodyrafo75/core-event-router-lib/models"
@@ -25,12 +26,15 @@ func main() {
 		panic(err)
 	}
 
-	ctx := context.Background()
-	pbService := pubsubService.NewPubSubService(ctx, PROJECT_ID, TOPIC_NAME, PRODUCER_CREDENTIALS, EVENT_ROUTER_CLIENTID)
+	pubsubService.NewPubSubService(context.Background(), PROJECT_ID, TOPIC_NAME, PRODUCER_CREDENTIALS, EVENT_ROUTER_CLIENTID)
 
 	//create example message
 	msg := createExampleMsg()
-	pbService.NotifyEvent(&msg)
+	res, err := pubsubService.PubsubClient.NotifyEvent(&msg)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(res)
 
 }
 

@@ -33,6 +33,7 @@ func (r *PubSubReceiver) Start() error {
 	}
 
 	err = r.retrieveMessages(*client, r.subscriptionId)
+
 	if err != nil {
 		return err
 	}
@@ -50,6 +51,7 @@ func (r *PubSubReceiver) retrieveMessages(client pubsub.Client, subscriptionId s
 		msgModel := convertToTGXModel(msg)
 		r.callback(msgModel)
 	})
+
 	if err != nil {
 		return fmt.Errorf("error receiving message: %v", err)
 	}

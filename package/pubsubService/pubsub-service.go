@@ -23,19 +23,22 @@ type PubSubService struct {
 }
 
 func NewPubSubService(ctx context.Context, projectID string, topicID string, credentials string, clientID string) *PubSubService {
-	return &PubSubService{
+	PubsubClient = PubSubService{
 		ctx:         ctx,
 		projectID:   projectID,
 		topicID:     topicID,
 		credentials: credentials,
 		clientID:    clientID,
 	}
+
+	return &PubsubClient
 }
 
 func (s *PubSubService) StartConsumer(callback *Callback, subscriptionID string) error {
 
 	s.connection = *NewPubSubConnection(s.ctx, s.projectID, s.topicID, s.credentials)
 	s.receiver = *NewPubSubReceiver(s.ctx, s.connection, subscriptionID, *callback)
+
 	err := s.receiver.Start()
 	if err != nil {
 		return err
